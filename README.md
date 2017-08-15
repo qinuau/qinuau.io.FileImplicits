@@ -1,4 +1,4 @@
-# qinuau.io.file.Files
+# qinuau.io.FileImplicits
 This is library of Scala to use for files. 
 ## Usage
     import qinuau.io.FileImplicits._
