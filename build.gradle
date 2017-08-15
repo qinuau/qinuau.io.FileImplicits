@@ -1,0 +1,13 @@
+apply plugin: 'scala'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.12.3'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.0'
+    testCompile 'junit:junit:4.12'
+    zinc 'com.typesafe.zinc:zinc:0.3.9'
+}
