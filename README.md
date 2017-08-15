@@ -1,6 +1,7 @@
 # qinuau.io.FileImplicits
 This is library of Scala to use for files. 
 ## Usage
+    import java.io.File
     import qinuau.io.FileImplicits._
 
     new File("/").walk(process = {
