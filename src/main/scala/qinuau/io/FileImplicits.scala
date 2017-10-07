@@ -11,8 +11,8 @@ object FileImplicits {
     var tmpTotalSize: Long = 0
   
     def walk(maxDepth: Int = 0, process: (Path) => Unit) {
-      var startPath = Paths.get(x.getCanonicalFile().toString())
-      var options = new HashSet[FileVisitOption]()
+      val startPath = Paths.get(x.getCanonicalFile.toString)
+      val options = new HashSet[FileVisitOption]
   
       if (maxDepth == 0) {
         Files.walkFileTree(startPath, new SimpleFileVisitor[Path] {
@@ -50,7 +50,7 @@ object FileImplicits {
       }
     }
   
-    def getTotalSize(file: Path): Long = {
+    def getTotalSize: Long = {
       this.walk(process = {(file: Path) => 
         if (Files.isDirectory(file) == false) {
           tmpTotalSize += Files.size(file)
