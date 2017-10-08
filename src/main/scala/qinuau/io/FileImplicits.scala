@@ -9,11 +9,35 @@ import java.util.HashSet
 object FileImplicits {
   implicit class FileImplicit(x: File) {
     var tmpTotalSize: Long = 0
-  
+
+    def newWalk(process: (Path) => Unit): Unit = {
+      recursiveProcess(x.getCanonicalFile.toString, process)
+    }
+
+    def recursiveProcess(file: String, process: (Path) => Unit): Unit = {
+      val f = new File(file)
+
+      if (f.isDirectory) {
+        f.listFiles.foreach {e => 
+          recursiveProcess(e.getCanonicalFile.toString, process)
+	}
+      }
+      else {
+        val path = Paths.get(file)
+        process(path)
+      }
+    }
+
+    def newTotalSize = {
+      newWalk(process = (p) => {
+
+      })
+    }
+
     def walk(maxDepth: Int = 0, process: (Path) => Unit) {
       val startPath = Paths.get(x.getCanonicalFile.toString)
       val options = new HashSet[FileVisitOption]
-  
+
       if (maxDepth == 0) {
         Files.walkFileTree(startPath, new SimpleFileVisitor[Path] {
           override def visitFile(file: Path, attrs: BasicFileAttributes) = {
